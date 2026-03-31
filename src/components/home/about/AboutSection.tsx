@@ -11,7 +11,7 @@ export default function AboutSection() {
       <S.Content>
         <S.Title>REVERSE 소개</S.Title>
 
-        <S.SubTitle>REVERSE란?</S.SubTitle>
+        <S.SubTitle>REVERS0E란?</S.SubTitle>
 
         <S.Description>
           ABCDEFG ABCD AAAA BBBBBBBBBBBB <br />
