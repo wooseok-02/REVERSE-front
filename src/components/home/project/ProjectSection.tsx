@@ -12,7 +12,7 @@ export default function ProjectSection() {
       <S.Inner>
         <S.Header>
           <S.Title>PROJECT</S.Title>
-          <S.Subtitle>REVERSE 프로젝트를 소개합니다!</S.Subtitle>
+          <S.Subtitle>REVERSE 프로젝트를 소개합니다!!!!</S.Subtitle>
         </S.Header>
 
         <S.CardGrid>
