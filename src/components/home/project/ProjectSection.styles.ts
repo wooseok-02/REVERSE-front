@@ -131,13 +131,13 @@ export const DetailCard = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background: #050505;
   border: 1px solid rgba(255, 255, 255, 0.45);
   box-shadow: 0 4px 18px rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border-radius : 25px;
 `;
 
 export const DetailGlowWrap = styled.div`

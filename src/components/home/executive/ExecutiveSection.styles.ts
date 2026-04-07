@@ -5,6 +5,7 @@ export const Section = styled.section`
   width: 100%;
   overflow: hidden;
   padding: 120px 20px 140px;
+  background-color : #2D303A;
 `;
 
 export const Inner = styled.div`
@@ -17,7 +18,7 @@ export const Inner = styled.div`
 export const Header = styled.div`
   text-align: center;
   color: #ffffff;
-  margin-bottom: 72px;
+  margin-bottom: 90px;
 `;
 
 export const Title = styled.h2`
@@ -25,7 +26,7 @@ export const Title = styled.h2`
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.03em;
-  margin-bottom: 18px;
+  margin-bottom: 45px;
 
   @media (max-width: 1200px) {
     font-size: 48px;
@@ -37,8 +38,8 @@ export const Title = styled.h2`
 `;
 
 export const Subtitle = styled.p`
-  font-size: 20px;
-  font-weight: 500;
+  font-size: 18px;
+  font-weight: 300;
   color: rgba(255, 255, 255, 0.82);
 
   @media (max-width: 1200px) {
