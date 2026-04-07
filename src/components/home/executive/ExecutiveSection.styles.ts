@@ -26,7 +26,7 @@ export const Title = styled.h2`
   font-weight: 500;
   line-height: 1;
   letter-spacing: -0.03em;
-  margin-bottom: 45px;
+  margin-bottom: 40px;
 
   @media (max-width: 1200px) {
     font-size: 48px;
