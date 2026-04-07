@@ -8,11 +8,12 @@ export default function ProjectSection() {
   const [openedId, setOpenedId] = useState<number | null>(null);
 
   return (
+    <>
     <S.Section>
       <S.Inner>
         <S.Header>
           <S.Title>PROJECT</S.Title>
-          <S.Subtitle>REVERSE 프로젝트를 소개합니다!!!!</S.Subtitle>
+          <S.Subtitle>REVERSE 프로젝트를 소개합니다!</S.Subtitle>
         </S.Header>
 
         <S.CardGrid>
@@ -30,7 +31,7 @@ export default function ProjectSection() {
                 >
                   {isOpened ? (
                     <S.DetailCard>
-                      <S.DetailGlowWrap>
+                      { <S.DetailGlowWrap>
                         <BlurGlow
                           color='#5580EF'
                           blur={120}
@@ -39,7 +40,7 @@ export default function ProjectSection() {
                           bottom='-40px'
                           opacity={0.45}
                         />
-                      </S.DetailGlowWrap>
+                      </S.DetailGlowWrap> }
 
                       <S.CloseButton
                         type='button'
@@ -72,5 +73,6 @@ export default function ProjectSection() {
         </S.CardGrid>
       </S.Inner>
     </S.Section>
+  </>
   );
 }
