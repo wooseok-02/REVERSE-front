@@ -8,7 +8,7 @@ export const Section = styled.section`
   align-items: center;
   justify-content: center;
   padding: 26px 20px 14px;
-  background: linear-gradient(180deg, #ffffff 0%, #f8f9fc 100%);
+  background-color: #2c2f39;
   box-shadow: inset 0 1px 0 rgba(164, 173, 207, 0.5);
 `;
 
@@ -25,7 +25,7 @@ export const TitleImage = styled.img`
 
 export const Subtitle = styled.p`
   margin: 10px 0 0;
-  color: rgba(128, 134, 158, 0.86);
+  color: #c5cbdf;
   font-size: 20px;
   font-weight: 500;
   letter-spacing: 0.04em;

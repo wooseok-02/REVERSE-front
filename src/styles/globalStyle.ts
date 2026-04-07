@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     overflow-x: hidden;
-    background-color: #C1BFDE33;
+    background-color: #2C2F39;
     line-height: 1;
   }
 `;
