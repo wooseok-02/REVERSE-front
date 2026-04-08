@@ -38,6 +38,7 @@ export default function ExecutiveSection() {
             </S.TeamColumn>
           ))}
         </S.TeamGrid>
+      <S.DecoBox />
       </S.Inner>
     </S.Section>
   );

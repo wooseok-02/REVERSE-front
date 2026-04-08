@@ -158,3 +158,15 @@ export const Email = styled.div`
   color: rgba(255, 255, 255, 0.72);
   word-break: break-all;
 `;
+
+export const DecoBox = styled.div`
+  position: absolute;
+
+  right: -90px;
+  bottom: -90px;
+
+  width: 25px;
+  height: 25px;
+
+  background-color: #4A4D56;
+`;
