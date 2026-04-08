@@ -1,9 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react"; // useEffect 추가
 import BlurGlow from "../../common/blur/BlurGlow";
 import * as S from "./ProjectSection.styles";
-import { projectData } from "./ProjectData";
+
+import { projectData as initialData } from "./ProjectData";
+import type { ProjectItem } from "./ProjectData";
 
 export default function ProjectSection() {
+
+  const [projectData /*연동할 때 다시 추가하기 : , setProjectData*/ ] = useState<ProjectItem[]>(initialData);  // 추가
+  useEffect(() => {
+    // 나중에 API 주소 받으면 여기에 추가
+  }, []);
+
+
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [openedId, setOpenedId] = useState<number | null>(null);
 

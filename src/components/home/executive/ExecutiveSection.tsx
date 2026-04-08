@@ -1,7 +1,15 @@
+import { useState, useEffect } from "react"; //추가
 import * as S from "./ExecutiveSection.styles";
-import { executiveData } from "./executiveData";
+import { executiveData as initialData } from "./executiveData"; //추가
+import type { ExecutiveTeam } from "./executiveData";
 
 export default function ExecutiveSection() {
+  const [executiveData] = useState<ExecutiveTeam[]>(initialData);
+
+  useEffect(() => {
+    // 나중에 API 주소 받으면 여기에 추가
+  }, []);
+  
   return (
     <S.Section>
       <S.Inner>

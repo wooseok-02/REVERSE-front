@@ -1,8 +1,15 @@
+import { useState, useEffect } from "react"; //추가
 import * as S from "./RuleSection.styles";
-import { ruleData } from "./ruleData";
+import { ruleData as initialData } from "./ruleData"; //추가
 import rule_bg_img from "../../../assets/images/rule-bg.png";
 
 export default function RuleSection() {
+  const [ruleData] = useState<string[]>(initialData);
+
+  useEffect(() => {
+    // 나중에 API 주소 받으면 여기에 추가
+  }, []);
+
   return (
     <S.Section>
       <S.BgWrap>
