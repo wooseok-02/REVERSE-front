@@ -11,7 +11,7 @@ function App() {
         const data = await testApiConnection();
         console.log("API Connection Successful:", data);
       } catch (error) {
-        console.error("API Connection Failed:", error);
+        console.log("API Connection Failed:", error);
       }
     };
     testConnection();

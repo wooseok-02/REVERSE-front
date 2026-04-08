@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Section = styled.section`
   position: relative;
@@ -51,7 +51,8 @@ export const Title = styled.h2`
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: 0.04em;
-  text-shadow: 0 3px 0 rgba(195, 200, 219, 0.9),
+  text-shadow:
+    0 3px 0 rgba(195, 200, 219, 0.9),
     0 10px 18px rgba(112, 118, 150, 0.18);
 `;
 
@@ -86,7 +87,9 @@ export const LinkButton = styled.button`
   border-radius: 2px;
   box-shadow: 0 3px 8px rgba(127, 133, 165, 0.18);
   cursor: pointer;
-  transition: transform 0.18s ease, box-shadow 0.18s ease,
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
     background-color 0.18s ease;
 
   &:hover {
@@ -105,4 +108,19 @@ export const ButtonIcon = styled.span`
   font-size: 14px;
   line-height: 1;
   margin-left: auto;
+`;
+
+const visibleStyle = css`
+  opacity: 1;
+  transform: translateY(0);
+`;
+
+export const Reveal = styled.div<{ $visible: boolean }>`
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+
+  ${({ $visible }) => $visible && visibleStyle}
 `;
