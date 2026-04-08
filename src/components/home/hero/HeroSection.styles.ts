@@ -64,9 +64,11 @@ export const IndicatorButton = styled.button<{ $active: boolean }>`
   border-radius: 999px;
   cursor: pointer;
   background: ${({ $active }) =>
-    $active ? "rgba(255, 255, 255, 0.96)" : "rgba(255, 255, 255, 0.52)"};
+    $active ? "#8C9FBF" : "rgba(255, 255, 255, 0.52)"};
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.16);
-  transition: width 0.25s ease, background-color 0.25s ease,
+  transition:
+    width 0.25s ease,
+    background-color 0.25s ease,
     transform 0.25s ease;
 
   &:hover {

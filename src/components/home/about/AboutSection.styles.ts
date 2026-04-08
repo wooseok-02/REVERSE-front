@@ -5,7 +5,7 @@ export const Section = styled.section`
   width: 100%;
   min-height: 880px;
   overflow: hidden;
-  background: #d9def2;
+  background: #2d303a;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,9 +13,11 @@ export const Section = styled.section`
 
 export const BackgroundMark = styled.img`
   position: absolute;
-  left: -2%;
-  bottom: -6%;
-  width: min(880px, 42vw);
+  left: -4%;
+  bottom: -4%;
+  width: min(960px, 50vw);
+  height: auto;
+  object-fit: contain;
 
   pointer-events: none;
   user-select: none;

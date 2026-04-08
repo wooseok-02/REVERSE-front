@@ -13,51 +13,6 @@ import Footer from "../../components/common/footer/Footer";
 export default function HomePage() {
   return (
     <S.Page>
-      <BlurGlow
-        color='#5580EF'
-        blur={120}
-        size={320}
-        right='10vw'
-        bottom='80vw'
-        opacity={0.5}
-      />
-
-      <BlurGlow
-        color='#6F3BF4'
-        blur={160}
-        size={400}
-        left='15vw'
-        bottom='50vw'
-        opacity={0.45}
-      />
-
-      <BlurGlow
-        color='#5580EF'
-        blur={160}
-        size={400}
-        right='24vw'
-        bottom='34vw'
-        opacity={0.5}
-      />
-
-      <BlurGlow
-        color='#6F3BF4'
-        blur={160}
-        size={400}
-        left='28vw'
-        bottom='16vw'
-        opacity={0.45}
-      />
-
-      <BlurGlow
-        color='#5580EF'
-        blur={160}
-        size={400}
-        right='-6vw'
-        bottom='4vw'
-        opacity={0.5}
-      />
-
       <HeroWordmark />
       <HeroSection />
       <AboutSection />

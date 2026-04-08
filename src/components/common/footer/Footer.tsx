@@ -1,7 +1,7 @@
 import * as S from "./Footer.styles";
 import footerLogo from "../../../assets/logos/Logo_5.png";
 
-const footerMenus = ["About Us", "활동 및 참여", "정보 및 교육", "게시판"];
+const footerMenus = ["About Us", "활동 및 참여", "정보 및 교류", "게시판"];
 
 const footerPolicies = [
   "Privacy Policy",
@@ -14,9 +14,7 @@ export default function Footer() {
     <S.Footer>
       <S.Inner>
         <S.TopRow>
-          <S.LogoButton type='button' aria-label='REVERSE home'>
-            <S.LogoImage src={footerLogo} alt='REVERSE logo' />
-          </S.LogoButton>
+          <S.TopSpacer />
 
           <S.Nav>
             {footerMenus.map((menu) => (
@@ -55,19 +53,27 @@ export default function Footer() {
           </S.IconButton>
         </S.TopRow>
 
-        <S.Divider />
+        <S.BottomBlock>
+          <S.BrandRow>
+            <S.LogoButton type='button' aria-label='REVERSE home'>
+              <S.LogoImage src={footerLogo} alt='REVERSE logo' />
+            </S.LogoButton>
 
-        <S.BottomRow>
-          <S.CopyText>© 2024 Relume. All rights reserved.</S.CopyText>
+            <S.Divider />
+          </S.BrandRow>
 
-          <S.PolicyList>
-            {footerPolicies.map((item) => (
-              <S.PolicyButton key={item} type='button'>
-                {item}
-              </S.PolicyButton>
-            ))}
-          </S.PolicyList>
-        </S.BottomRow>
+          <S.BottomRow>
+            <S.CopyText>© 2024 Relume. All rights reserved.</S.CopyText>
+
+            <S.PolicyList>
+              {footerPolicies.map((item) => (
+                <S.PolicyButton key={item} type='button'>
+                  {item}
+                </S.PolicyButton>
+              ))}
+            </S.PolicyList>
+          </S.BottomRow>
+        </S.BottomBlock>
       </S.Inner>
     </S.Footer>
   );
