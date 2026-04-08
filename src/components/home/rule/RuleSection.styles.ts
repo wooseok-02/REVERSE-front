@@ -1,9 +1,7 @@
 import styled from "styled-components";
 
 if (typeof document !== "undefined") {
-  const existing = document.querySelector(
-    "link[href*='fonts.googleapis.com']"
-  );
+  const existing = document.querySelector("link[href*='fonts.googleapis.com']");
 
   if (!existing) {
     const link = document.createElement("link");
@@ -24,14 +22,14 @@ export const BgWrap = styled.div`
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: #2D303A;    //이미지 밖 채우는 색
+  background: #2d303a; //이미지 밖 채우는 색
 `;
 
 export const BgImage = styled.img`
   width: 100%;
   height: 100%;
 
-  object-fit: contain;   // 이미지 비율 유지 
+  object-fit: contain; // 이미지 비율 유지
 `;
 
 export const Inner = styled.div`
@@ -49,7 +47,7 @@ export const Title = styled.h2`
   margin-bottom: 35px;
   letter-spacing: 0.02em;
 
-  font-family: 'Jersey 25', sans-serif;
+  font-family: "Jersey 25", sans-serif;
 
   @media (max-width: 1200px) {
     font-size: 44px;

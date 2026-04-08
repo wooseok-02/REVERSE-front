@@ -23,7 +23,6 @@ export default function RuleSection() {
         <S.ButtonWrap>
           <S.Button>Learn More</S.Button>
         </S.ButtonWrap>
-
       </S.Inner>
     </S.Section>
   );
