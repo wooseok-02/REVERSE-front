@@ -115,7 +115,8 @@ const visibleStyle = css`
   transform: translateY(0);
 `;
 
-export const Reveal = styled.div<{ $visible: boolean }>`
+export const Reveal = styled.span<{ $visible: boolean }>`
+  display: block;
   opacity: 0;
   transform: translateY(40px);
   transition:
