@@ -176,34 +176,42 @@ export const StatusText = styled.p<{ $error?: boolean }>`
 
 export const PreviewPanel = styled.div`
   display: grid;
-  gap: 18px;
+  gap: 14px;
 `;
 
 export const PreviewImage = styled.img`
   width: 100%;
-  aspect-ratio: 16 / 9;
+  min-height: 180px;
+  max-height: 220px;
   object-fit: cover;
   border-radius: 18px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: #0d1220;
+  display: block;
 `;
 
 export const EmptyPreview = styled.div`
-  display: grid;
-  place-items: center;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  min-height: 180px;
+  max-height: 220px;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   border-radius: 18px;
   border: 1px dashed rgba(255, 255, 255, 0.18);
   background: rgba(11, 15, 24, 0.9);
   color: rgba(238, 242, 255, 0.46);
   font-size: 14px;
+  line-height: 1.5;
 `;
 
 export const MetaList = styled.dl`
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 10px 14px;
+  grid-template-columns: 88px 1fr;
+  gap: 8px 12px;
   margin: 0;
 `;
 
