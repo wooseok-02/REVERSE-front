@@ -16,7 +16,7 @@ export default function ProjectSection() {
 
         const mapped = data.map((item: any, index: number) => ({
           id: item.id ?? index,
-          title: item.title ?? "",
+          projectName: item.projectName ?? "",
           thumbnailUrl: item.thumbnailUrl ?? "",
           description: item.description ?? "",
           techStack: item.techStack ?? "",
@@ -58,18 +58,18 @@ export default function ProjectSection() {
                     <S.DetailCard>
                       <S.DetailGlowWrap>
                         <BlurGlow
-                          color="#5580EF"
+                          color='#5580EF'
                           blur={120}
                           size={280}
-                          right="-80px"
-                          bottom="-40px"
+                          right='-80px'
+                          bottom='-40px'
                           opacity={0.45}
                         />
                       </S.DetailGlowWrap>
 
                       {/* 닫기 버튼 */}
                       <S.CloseButton
-                        type="button"
+                        type='button'
                         aria-label={`${item.title} 상세 닫기`}
                         onClick={() => setOpenedId(null)}
                       >
@@ -83,14 +83,11 @@ export default function ProjectSection() {
                     </S.DetailCard>
                   ) : (
                     <S.ImageCard
-                      type="button"
-                      onClick={() => setOpenedId(index)} 
-                      aria-label={`${item.title} 더보기`}
+                      type='button'
+                      onClick={() => setOpenedId(index)}
+                      aria-label={`${item.projectName} 더보기`}
                     >
-                      <S.Image
-                        src={item.thumbnailUrl}
-                        alt={item.title}
-                      />
+                      <S.Image src={item.thumbnailUrl} alt={item.title} />
                       <S.HoverOverlay $visible={isHovered}>
                         <S.MoreText>더보기 +</S.MoreText>
                       </S.HoverOverlay>
@@ -98,7 +95,7 @@ export default function ProjectSection() {
                   )}
                 </S.CardFrame>
 
-                <S.CardTitle>{item.title}</S.CardTitle>
+                <S.CardTitle>{item.projectName}</S.CardTitle>
               </S.CardItem>
             );
           })}
