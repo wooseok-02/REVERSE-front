@@ -1,5 +1,4 @@
 import { axiosInstance } from "./axiosInstance";
-export type R2Folder = "club" | "project" | "executive";
 
 export type ClubIntroPayload = {
   title: string;
@@ -15,11 +14,6 @@ export type ClubIntroResponse = ClubIntroPayload & {
   createdAt?: string;
   updatedAt?: string;
   isActive?: boolean | number;
-};
-
-export const testApiConnection = async () => {
-  const response = await axiosInstance.get("/api/club-intro");
-  return response.data;
 };
 
 export const getClubIntroList = async (): Promise<ClubIntroResponse[]> => {
@@ -41,18 +35,5 @@ export const createClubIntro = async (
 
 export const deleteClubIntro = async (id: number | string) => {
   const response = await axiosInstance.delete(`/api/club-intro/${id}`);
-  return response.data;
-};
-
-export const uploadImageToR2 = async (
-  file: File,
-  folder: R2Folder
-): Promise<string> => {
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("folder", folder);
-
-  const response = await axiosInstance.post("/api/r2/upload", formData);
-
   return response.data;
 };

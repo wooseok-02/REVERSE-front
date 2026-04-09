@@ -3,11 +3,10 @@ import * as S from "./ClubIntroManagePage.styles";
 import {
   createClubIntro,
   deleteClubIntro,
-  uploadImageToR2,
   type ClubIntroPayload,
   type ClubIntroResponse,
-  type R2Folder,
-} from "../../services/testAPI";
+} from "../../services/clubIntroApi";
+import { uploadImageToR2, type R2Folder } from "../../services/uploadApi";
 
 const initialForm: ClubIntroPayload = {
   title: "",

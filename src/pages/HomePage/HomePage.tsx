@@ -11,7 +11,7 @@ import Footer from "../../components/common/footer/Footer";
 import {
   getClubIntroList,
   type ClubIntroResponse,
-} from "../../services/testAPI";
+} from "../../services/clubIntroApi";
 
 export default function HomePage() {
   const [clubIntros, setClubIntros] = useState<ClubIntroResponse[]>([]);
