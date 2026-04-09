@@ -1,23 +1,27 @@
-import { useState, useEffect } from "react"; // useEffect 추가
+import { useState, useEffect } from "react";
 import BlurGlow from "../../common/blur/BlurGlow";
 import * as S from "./ProjectSection.styles";
-
-import { projectData as initialData } from "./ProjectData";
-import type { ProjectItem } from "./ProjectData";
+import { getProjectList } from "../../../services/projectAPI";
+import type { ClubProject } from "../../../services/projectAPI";
 
 export default function ProjectSection() {
-
-  const [projectData /*연동할 때 다시 추가하기 : , setProjectData*/ ] = useState<ProjectItem[]>(initialData);  // 추가
-  useEffect(() => {
-    // 나중에 API 주소 받으면 여기에 추가
-  }, []);
-
-
+  const [projectData, setProjectData] = useState<ClubProject[]>([]);
   const [hoveredId, setHoveredId] = useState<number | null>(null);
   const [openedId, setOpenedId] = useState<number | null>(null);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getProjectList();
+        setProjectData(data);
+      } catch (error) {
+        console.error("프로젝트 데이터 불러오기 실패", error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
-    <>
     <S.Section>
       <S.Inner>
         <S.Header>
@@ -26,48 +30,50 @@ export default function ProjectSection() {
         </S.Header>
 
         <S.CardGrid>
-          {projectData.map((item) => {
-            const isHovered = hoveredId === item.id;
-            const isOpened = openedId === item.id;
+          {projectData.map((item, index) => {
+            const isHovered = hoveredId === index;
+            const isOpened = openedId === index;
 
             return (
-              <S.CardItem key={item.id}>
+              <S.CardItem key={item.projectId ?? index}>
                 <S.CardFrame
-                  onMouseEnter={() => setHoveredId(item.id)}
+                  onMouseEnter={() => setHoveredId(index)}
                   onMouseLeave={() =>
-                    setHoveredId((prev) => (prev === item.id ? null : prev))
+                    setHoveredId((prev) => (prev === index ? null : prev))
                   }
                 >
                   {isOpened ? (
                     <S.DetailCard>
-                      { <S.DetailGlowWrap>
+                      <S.DetailGlowWrap>
                         <BlurGlow
-                          color='#5580EF'
+                          color="#5580EF"
                           blur={120}
                           size={280}
-                          right='-80px'
-                          bottom='-40px'
+                          right="-80px"
+                          bottom="-40px"
                           opacity={0.45}
                         />
-                      </S.DetailGlowWrap> }
+                      </S.DetailGlowWrap>
 
                       <S.CloseButton
-                        type='button'
-                        aria-label={`${item.title} 상세 닫기`}
+                        type="button"
+                        aria-label={`${item.projectName} 상세 닫기`}
                         onClick={() => setOpenedId(null)}
                       >
                         ×
                       </S.CloseButton>
 
-                      <S.DetailInner>{item.detailText}</S.DetailInner>
+                      <S.DetailInner>
+                        {item.projectUrl || "링크가 없습니다."}
+                      </S.DetailInner>
                     </S.DetailCard>
                   ) : (
                     <S.ImageCard
-                      type='button'
-                      onClick={() => setOpenedId(item.id)}
-                      aria-label={`${item.title} 더보기`}
+                      type="button"
+                      onClick={() => setOpenedId(index)}
+                      aria-label={`${item.projectName} 더보기`}
                     >
-                      <S.Image src={item.image} alt={item.title} />
+                      <S.Image src={item.thumbnailUrl} alt={item.projectName} />
                       <S.HoverOverlay $visible={isHovered}>
                         <S.MoreText>더보기 +</S.MoreText>
                       </S.HoverOverlay>
@@ -75,13 +81,12 @@ export default function ProjectSection() {
                   )}
                 </S.CardFrame>
 
-                <S.CardTitle>{item.title}</S.CardTitle>
+                <S.CardTitle>{item.projectName}</S.CardTitle>
               </S.CardItem>
             );
           })}
         </S.CardGrid>
       </S.Inner>
     </S.Section>
-  </>
   );
 }

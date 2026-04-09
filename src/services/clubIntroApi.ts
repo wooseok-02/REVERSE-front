@@ -16,6 +16,11 @@ export type ClubIntroResponse = ClubIntroPayload & {
   isActive?: boolean | number;
 };
 
+export const testApiConnection = async () => {
+  const response = await axiosInstance.get("/api/club-project");
+  return response.data;
+};
+
 export const getClubIntroList = async (): Promise<ClubIntroResponse[]> => {
   const response = await axiosInstance.get("/api/club-intro");
   return response.data;
