@@ -14,6 +14,16 @@ export const Section = styled.section`
   }
 `;
 
+export const EmptyState = styled.div`
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 16px;
+  background: linear-gradient(180deg, #1a2030 0%, #0f1420 100%);
+`;
+
 export const SliderTrack = styled.div`
   display: flex;
   width: 100%;

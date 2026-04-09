@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 
 import AuthShell from "../AuthShell/AuthShell";
 import * as C from "../FormField/AuthControls.styles";
