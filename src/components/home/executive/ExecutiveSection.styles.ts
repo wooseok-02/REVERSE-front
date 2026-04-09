@@ -129,6 +129,20 @@ export const Avatar = styled.div`
   }
 `;
 
+export const AvatarImage = styled.img`
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+
+  @media (max-width: 1200px) {
+    width: 64px;
+    height: 64px;
+  }
+`;
+
 export const MemberInfo = styled.div`
   min-width: 0;
   display: flex;
@@ -157,6 +171,16 @@ export const Email = styled.div`
   font-weight: 400;
   color: rgba(255, 255, 255, 0.72);
   word-break: break-all;
+`;
+
+export const EmptyState = styled.div`
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  border: 1px dashed rgba(255, 255, 255, 0.16);
+  border-radius: 24px;
 `;
 
 export const DecoBox = styled.div`
