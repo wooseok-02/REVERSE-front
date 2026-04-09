@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import { mainRoutes } from "./mainRoutes";
 import { authRoutes } from "./authRoutes";
+import ClubIntroManagePage from "../pages/clubIntroManage/ClubIntroManagePage";
 
 export default function Router() {
   return (
@@ -14,6 +15,7 @@ export default function Router() {
         {authRoutes.map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
+        <Route path='/admin/club-intro' element={<ClubIntroManagePage />} />
       </Route>
     </Routes>
   );

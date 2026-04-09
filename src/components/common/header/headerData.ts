@@ -7,7 +7,11 @@ export const headerMenus: HeaderMenuItem[] = [
     sections: [
       {
         title: "소개",
-        items: ["동아리 소개", "임원진 소개", "프로젝트 소개"],
+        items: ["동아리 소개", "프로젝트 소개", "임원진 소개"],
+      },
+      {
+        title: "가입 안내",
+        items: ["모집 공고", "지원하기"],
       },
     ],
   },
@@ -21,7 +25,7 @@ export const headerMenus: HeaderMenuItem[] = [
       },
       {
         title: "프로젝트",
-        items: ["스터디 게시판", "프로젝트 게시판"],
+        items: ["메인 프로젝트", "프로젝트 게시판"],
       },
       {
         title: "출석 관리",
@@ -35,7 +39,7 @@ export const headerMenus: HeaderMenuItem[] = [
     sections: [
       {
         title: "정보",
-        items: ["IT 이슈 종합"],
+        items: ["공지사항", "캘린더", "IT 이슈 종합"],
       },
       {
         title: "교류",
@@ -56,15 +60,11 @@ export const headerMenus: HeaderMenuItem[] = [
         items: [],
       },
       {
-        title: "족보 공유 게시판",
+        title: "나눔 게시판",
         items: [],
       },
       {
-        title: "교재/교구 나눔 게시판",
-        items: [],
-      },
-      {
-        title: "질의 응답 게시판",
+        title: "질의응답 게시판",
         items: [],
       },
     ],

@@ -1,22 +1,9 @@
 import { useState } from "react";
 import * as S from "./Header.styles";
 import Logo from "../Logo";
-import LogoImage from "../../../assets/logos/Logo_4.png";
-import type {
-  HeaderProps,
-  HeaderMenuItem,
-  MegaMenuSection,
-} from "./Header.types";
-
-function chunkSections(sections: MegaMenuSection[] = [], size = 2) {
-  const result: MegaMenuSection[][] = [];
-
-  for (let i = 0; i < sections.length; i += size) {
-    result.push(sections.slice(i, i + size));
-  }
-
-  return result;
-}
+import LogoImage from "../../../assets/logos/Header_logo.png";
+import BannerLogo from "../../../assets/logos/baner.png";
+import type { HeaderProps } from "./Header.types";
 
 export default function Header({
   menus,
@@ -26,60 +13,68 @@ export default function Header({
   onLoginClick,
 }: HeaderProps) {
   const [hoveredMenuKey, setHoveredMenuKey] = useState<string | null>(null);
+  const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
 
   return (
     <S.Wrapper>
       <S.Container>
         <S.Logo onClick={onLogoClick}>
-          {logo && <Logo src={LogoImage} size={220} alt='logo' />}
+          {logo && <Logo src={LogoImage} size={56} alt='logo' />}
         </S.Logo>
 
         <S.RightArea>
-          <S.Nav>
-            {menus.map((menu) => (
-              <S.MenuItem
-                key={menu.key}
-                onMouseEnter={() => setHoveredMenuKey(menu.key)}
-                onMouseLeave={() => setHoveredMenuKey(null)}
-              >
-                <S.MenuButton
-                  type='button'
-                  $active={hoveredMenuKey === menu.key}
+          <S.NavArea
+            onMouseEnter={() => setIsMegaMenuOpen(true)}
+            onMouseLeave={() => {
+              setIsMegaMenuOpen(false);
+              setHoveredMenuKey(null);
+            }}
+          >
+            <S.Nav>
+              {menus.map((menu) => (
+                <S.MenuItem
+                  key={menu.key}
+                  onMouseEnter={() => setHoveredMenuKey(menu.key)}
                 >
-                  {menu.label}
-                </S.MenuButton>
+                  <S.MenuButton
+                    type='button'
+                    $active={hoveredMenuKey === menu.key}
+                  >
+                    {menu.label}
+                  </S.MenuButton>
+                </S.MenuItem>
+              ))}
+            </S.Nav>
 
-                {hoveredMenuKey === menu.key &&
-                  menu.sections &&
-                  menu.sections.length > 0 && (
-                    <S.MegaMenuWrap
-                      onMouseEnter={() => setHoveredMenuKey(menu.key)}
-                      onMouseLeave={() => setHoveredMenuKey(null)}
-                    >
-                      <S.MegaMenuInner>
-                        {chunkSections(menu.sections, 2).map((group, index) => (
-                          <S.Column key={`${menu.key}-group-${index}`}>
-                            {group.map((section) => (
-                              <S.Section key={section.title}>
-                                <S.SectionTitle>{section.title}</S.SectionTitle>
+            {isMegaMenuOpen && (
+              <S.MegaMenuWrap>
+                <S.MegaMenuInner>
+                  {menus.map((menu) => (
+                    <S.Column key={menu.key}>
+                      <S.ColumnTitle>{menu.label}</S.ColumnTitle>
 
-                                {section.items.length > 0 && (
-                                  <S.SubItemList>
-                                    {section.items.map((item) => (
-                                      <S.SubItem key={item}>{item}</S.SubItem>
-                                    ))}
-                                  </S.SubItemList>
-                                )}
-                              </S.Section>
-                            ))}
-                          </S.Column>
-                        ))}
-                      </S.MegaMenuInner>
-                    </S.MegaMenuWrap>
-                  )}
-              </S.MenuItem>
-            ))}
-          </S.Nav>
+                      {menu.sections?.map((section) => (
+                        <S.Section key={`${menu.key}-${section.title}`}>
+                          <S.SectionHeading>
+                            <S.SectionIcon src={BannerLogo} alt='' aria-hidden='true' />
+                            <S.SectionTitle>{section.title}</S.SectionTitle>
+                          </S.SectionHeading>
+
+                          {section.items.length > 0 && (
+                            <S.SubItemList>
+                              {section.items.map((item) => (
+                                <S.SubItem key={item}>{item}</S.SubItem>
+                              ))}
+                            </S.SubItemList>
+                          )}
+                        </S.Section>
+                      ))}
+                    </S.Column>
+                  ))}
+                </S.MegaMenuInner>
+              </S.MegaMenuWrap>
+            )}
+          </S.NavArea>
 
           <S.LoginButton type='button' onClick={onLoginClick}>
             {loginText}
