@@ -7,17 +7,14 @@ export default function useScrollReveal(threshold = 0.2) {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
+        setIsVisible(entry.isIntersecting);
       },
-      { threshold },
+      { threshold }
     );
 
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [threshold]);
 
   return { ref, isVisible };
 }

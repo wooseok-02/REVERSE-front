@@ -4,6 +4,7 @@ import { mainRoutes } from "./mainRoutes";
 import { authRoutes } from "./authRoutes";
 import ClubIntroManagePage from "../pages/clubIntroManage/ClubIntroManagePage";
 import OfficerManagePage from "../pages/officerManage/OfficerManagePage";
+import TermsManagePage from "../pages/termsManage/TermsManagePage";
 
 export default function Router() {
   return (
@@ -18,6 +19,7 @@ export default function Router() {
         ))}
         <Route path='/admin/club-intro' element={<ClubIntroManagePage />} />
         <Route path='/admin/officer' element={<OfficerManagePage />} />
+        <Route path='/admin/terms' element={<TermsManagePage />} />
       </Route>
     </Routes>
   );
