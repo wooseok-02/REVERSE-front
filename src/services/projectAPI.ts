@@ -1,27 +1,24 @@
 import { axiosInstance } from "./axiosInstance";
 
 // 프로젝트 타입 정의
-export type ClubProject = {
-  id: number;
-  title: string;
-  description: string;
+export interface ClubProject {
+  projectId: number;
+  projectName: string;
+  projectUrl: string;
   thumbnailUrl: string;
-  techStack: string;
-  githubUrl: string;
-  isActive: number;
-  updatedBy: number;
-};
+  sortOrder: number;
+  updatedBy: string;
+  createdDate: string;
+  modifiedDate: string;
+}
 
-// 등록할 때 보내는 데이터 타입
-export type ClubProjectPayload = {
-  title: string;
-  description: string;
+export interface ClubProjectPayload {
+  projectName: string;
+  projectUrl: string;
   thumbnailUrl: string;
-  techStack: string;
-  githubUrl: string;
-  isActive: number;
-  updatedBy: number;
-};
+  sortOrder: number;
+  updatedBy: string;
+}
 
 // 프로젝트 목록 조회 (GET)
 export const getProjectList = async (): Promise<ClubProject[]> => {

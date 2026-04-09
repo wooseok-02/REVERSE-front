@@ -9,13 +9,11 @@ import {
 } from "../../services/projectAPI";
 
 const initialForm: ClubProjectPayload = {
-  title: "",
-  description: "",
+  projectName: "",
+  projectUrl: "",
   thumbnailUrl: "",
-  techStack: "",
-  githubUrl: "",
-  isActive: 1,
-  updatedBy: 1,
+  sortOrder: 0,
+  updatedBy: "test",
 };
 
 export default function ProjectManagePage() {
@@ -38,12 +36,10 @@ export default function ProjectManagePage() {
     (key: keyof ClubProjectPayload) =>
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { value } = event.target;
+
       setForm((prev) => ({
         ...prev,
-        [key]:
-          key === "isActive" || key === "updatedBy"
-            ? Number(value || 0)
-            : value,
+        [key]: key === "sortOrder" ? Number(value || 0) : value,
       }));
     };
 
@@ -58,12 +54,19 @@ export default function ProjectManagePage() {
       setUploadMessage("업로드할 이미지를 먼저 선택해주세요.");
       return;
     }
+
     try {
       setIsUploading(true);
       setUploadMessage("");
+
       const imageUrl = await uploadProjectImage(selectedFile);
+
       setUploadedUrl(imageUrl);
-      setForm((prev) => ({ ...prev, thumbnailUrl: imageUrl }));
+      setForm((prev) => ({
+        ...prev,
+        thumbnailUrl: imageUrl,
+      }));
+
       setUploadMessage("이미지 업로드가 완료되었습니다.");
     } catch (error) {
       console.error("image upload failed", error);
@@ -77,7 +80,12 @@ export default function ProjectManagePage() {
     try {
       setIsSubmitting(true);
       setSubmitMessage("");
-      const payload = { ...form, thumbnailUrl: activeThumbnailUrl };
+
+      const payload: ClubProjectPayload = {
+        ...form,
+        thumbnailUrl: activeThumbnailUrl,
+      };
+
       const result = await createProject(payload);
       setResponse(result);
       setSubmitMessage("프로젝트 등록이 완료되었습니다.");
@@ -94,9 +102,11 @@ export default function ProjectManagePage() {
       setDeleteMessage("삭제할 프로젝트 ID를 입력해주세요.");
       return;
     }
+
     try {
       setIsDeleting(true);
       setDeleteMessage("");
+
       const result = await deleteProject(deleteId.trim());
       setDeleteResponse(result);
       setDeleteMessage("프로젝트 삭제가 완료되었습니다.");
@@ -121,7 +131,6 @@ export default function ProjectManagePage() {
         </S.Header>
 
         <S.Grid>
-          {/* 이미지 업로드 */}
           <S.Card>
             <S.CardTitle>썸네일 업로드</S.CardTitle>
             <S.CardText>
@@ -165,29 +174,27 @@ export default function ProjectManagePage() {
             </S.PreviewPanel>
           </S.Card>
 
-          {/* 프로젝트 등록 */}
           <S.Card>
             <S.CardTitle>프로젝트 등록</S.CardTitle>
             <S.CardText>
-              업로드한 썸네일 URL을 포함해 <code>/api/club-project</code>로
-              프로젝트 정보를 등록합니다.
+              <code>/api/club-project</code>로 프로젝트 정보를 등록합니다.
             </S.CardText>
 
             <S.Field>
               <S.FieldLabel>프로젝트 이름</S.FieldLabel>
               <S.Input
-                value={form.title}
-                onChange={handleTextChange("title")}
+                value={form.projectName}
+                onChange={handleTextChange("projectName")}
                 placeholder="프로젝트 이름"
               />
             </S.Field>
 
             <S.Field>
-              <S.FieldLabel>프로젝트 설명</S.FieldLabel>
-              <S.TextArea
-                value={form.description}
-                onChange={handleTextChange("description")}
-                placeholder="프로젝트 설명"
+              <S.FieldLabel>프로젝트 URL</S.FieldLabel>
+              <S.Input
+                value={form.projectUrl}
+                onChange={handleTextChange("projectUrl")}
+                placeholder="https://..."
               />
             </S.Field>
 
@@ -201,46 +208,28 @@ export default function ProjectManagePage() {
             </S.Field>
 
             <S.Field>
-              <S.FieldLabel>기술 스택</S.FieldLabel>
+              <S.FieldLabel>정렬 순서</S.FieldLabel>
               <S.Input
-                value={form.techStack}
-                onChange={handleTextChange("techStack")}
-                placeholder="예: React, Spring Boot"
+                type="number"
+                value={form.sortOrder}
+                onChange={handleTextChange("sortOrder")}
               />
             </S.Field>
 
             <S.Field>
-              <S.FieldLabel>깃헙 URL</S.FieldLabel>
+              <S.FieldLabel>수정자</S.FieldLabel>
               <S.Input
-                value={form.githubUrl}
-                onChange={handleTextChange("githubUrl")}
-                placeholder="https://github.com/..."
+                value={form.updatedBy}
+                onChange={handleTextChange("updatedBy")}
+                placeholder="예: test"
               />
             </S.Field>
-
-            <S.InlineFields>
-              <S.Field>
-                <S.FieldLabel>isActive</S.FieldLabel>
-                <S.Input
-                  type="number"
-                  value={form.isActive}
-                  onChange={handleTextChange("isActive")}
-                />
-              </S.Field>
-              <S.Field>
-                <S.FieldLabel>updatedBy</S.FieldLabel>
-                <S.Input
-                  type="number"
-                  value={form.updatedBy}
-                  onChange={handleTextChange("updatedBy")}
-                />
-              </S.Field>
-            </S.InlineFields>
 
             <S.ButtonRow>
               <S.PrimaryButton type="button" onClick={handleSubmit}>
                 {isSubmitting ? "등록 중..." : "프로젝트 등록"}
               </S.PrimaryButton>
+
               <S.SecondaryButton
                 type="button"
                 onClick={() => {
@@ -263,8 +252,16 @@ export default function ProjectManagePage() {
             <S.PreviewPanel>
               <S.CardTitle as="h3">요청 미리보기</S.CardTitle>
               <S.CodeBlock>
-                {JSON.stringify({ ...form, thumbnailUrl: activeThumbnailUrl }, null, 2)}
+                {JSON.stringify(
+                  {
+                    ...form,
+                    thumbnailUrl: activeThumbnailUrl,
+                  },
+                  null,
+                  2
+                )}
               </S.CodeBlock>
+
               <S.CardTitle as="h3">응답</S.CardTitle>
               <S.CodeBlock>
                 {response ? JSON.stringify(response, null, 2) : "아직 응답이 없습니다."}
@@ -272,7 +269,6 @@ export default function ProjectManagePage() {
             </S.PreviewPanel>
           </S.Card>
 
-          {/* 프로젝트 삭제 */}
           <S.Card>
             <S.CardTitle>프로젝트 삭제</S.CardTitle>
             <S.CardText>
@@ -309,6 +305,7 @@ export default function ProjectManagePage() {
                   ? `DELETE /api/club-project/${deleteId.trim()}`
                   : "삭제할 ID를 입력하면 요청 경로가 여기에 표시됩니다."}
               </S.CodeBlock>
+
               <S.CardTitle as="h3">응답</S.CardTitle>
               <S.CodeBlock>
                 {deleteResponse

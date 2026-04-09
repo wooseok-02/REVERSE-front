@@ -13,19 +13,7 @@ export default function ProjectSection() {
     const fetchData = async () => {
       try {
         const data = await getProjectList();
-
-        const mapped = data.map((item: any, index: number) => ({
-          id: item.id ?? index,
-          projectName: item.projectName ?? "",
-          thumbnailUrl: item.thumbnailUrl ?? "",
-          description: item.description ?? "",
-          techStack: item.techStack ?? "",
-          githubUrl: item.githubUrl ?? "",
-          isActive: item.isActive ?? 1,
-          updatedBy: item.updatedBy ?? 0,
-        }));
-
-        setProjectData(mapped);
+        setProjectData(data);
       } catch (error) {
         console.error("프로젝트 데이터 불러오기 실패", error);
       }
@@ -47,7 +35,7 @@ export default function ProjectSection() {
             const isOpened = openedId === index;
 
             return (
-              <S.CardItem key={index}>
+              <S.CardItem key={item.projectId ?? index}>
                 <S.CardFrame
                   onMouseEnter={() => setHoveredId(index)}
                   onMouseLeave={() =>
@@ -58,36 +46,34 @@ export default function ProjectSection() {
                     <S.DetailCard>
                       <S.DetailGlowWrap>
                         <BlurGlow
-                          color='#5580EF'
+                          color="#5580EF"
                           blur={120}
                           size={280}
-                          right='-80px'
-                          bottom='-40px'
+                          right="-80px"
+                          bottom="-40px"
                           opacity={0.45}
                         />
                       </S.DetailGlowWrap>
 
-                      {/* 닫기 버튼 */}
                       <S.CloseButton
-                        type='button'
-                        aria-label={`${item.title} 상세 닫기`}
+                        type="button"
+                        aria-label={`${item.projectName} 상세 닫기`}
                         onClick={() => setOpenedId(null)}
                       >
                         ×
                       </S.CloseButton>
 
-                      {/* 상세 내용 */}
                       <S.DetailInner>
-                        {item.description || "상세내용"}
+                        {item.projectUrl || "링크가 없습니다."}
                       </S.DetailInner>
                     </S.DetailCard>
                   ) : (
                     <S.ImageCard
-                      type='button'
+                      type="button"
                       onClick={() => setOpenedId(index)}
                       aria-label={`${item.projectName} 더보기`}
                     >
-                      <S.Image src={item.thumbnailUrl} alt={item.title} />
+                      <S.Image src={item.thumbnailUrl} alt={item.projectName} />
                       <S.HoverOverlay $visible={isHovered}>
                         <S.MoreText>더보기 +</S.MoreText>
                       </S.HoverOverlay>
