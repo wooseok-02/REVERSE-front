@@ -1,15 +1,23 @@
-import { useState, useEffect } from "react"; // useEffect 추가
+import { useState, useEffect } from "react";
 import BlurGlow from "../../common/blur/BlurGlow";
 import * as S from "./ProjectSection.styles";
-
-import { projectData as initialData } from "./ProjectData";
-import type { ProjectItem } from "./ProjectData";
+import { getProjectList } from "../../../services/projectAPI";
+import type { ClubProject } from "../../../services/projectAPI";
 
 export default function ProjectSection() {
 
-  const [projectData /*연동할 때 다시 추가하기 : , setProjectData*/ ] = useState<ProjectItem[]>(initialData);  // 추가
+  const [projectData, setProjectData] = useState<ClubProject[]>([]);
+
   useEffect(() => {
-    // 나중에 API 주소 받으면 여기에 추가
+    const fetchData = async () => {
+      try {
+        const data = await getProjectList();
+        setProjectData(data);
+      } catch (error) {
+        console.error("프로젝트 데이터 불러오기 실패", error);
+      }
+    };
+    fetchData();
   }, []);
 
 
