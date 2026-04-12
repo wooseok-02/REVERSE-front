@@ -46,17 +46,17 @@ export default function ProjectSection() {
                     <S.DetailCard>
                       <S.DetailGlowWrap>
                         <BlurGlow
-                          color="#5580EF"
+                          color='#5580EF'
                           blur={120}
                           size={280}
-                          right="-80px"
-                          bottom="-40px"
+                          right='-80px'
+                          bottom='-40px'
                           opacity={0.45}
                         />
                       </S.DetailGlowWrap>
 
                       <S.CloseButton
-                        type="button"
+                        type='button'
                         aria-label={`${item.projectName} 상세 닫기`}
                         onClick={() => setOpenedId(null)}
                       >
@@ -69,7 +69,7 @@ export default function ProjectSection() {
                     </S.DetailCard>
                   ) : (
                     <S.ImageCard
-                      type="button"
+                      type='button'
                       onClick={() => setOpenedId(index)}
                       aria-label={`${item.projectName} 더보기`}
                     >
