@@ -22,12 +22,6 @@ export default function HeroSection({ imageUrls }: HeroSectionProps) {
     return () => window.clearInterval(intervalId);
   }, [imageUrls]);
 
-  useEffect(() => {
-    if (activeIndex >= imageUrls.length) {
-      setActiveIndex(0);
-    }
-  }, [activeIndex, imageUrls.length]);
-
   if (imageUrls.length === 0) {
     return (
       <S.Section>
@@ -36,9 +30,11 @@ export default function HeroSection({ imageUrls }: HeroSectionProps) {
     );
   }
 
+  const visibleIndex = activeIndex < imageUrls.length ? activeIndex : 0;
+
   return (
     <S.Section>
-      <S.SliderTrack style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+      <S.SliderTrack style={{ transform: `translateX(-${visibleIndex * 100}%)` }}>
         {imageUrls.map((image, index) => (
           <S.Slide key={`${image}-${index}`}>
             <S.BackgroundImage
@@ -55,7 +51,7 @@ export default function HeroSection({ imageUrls }: HeroSectionProps) {
           <S.IndicatorButton
             key={`hero-indicator-${index}`}
             type='button'
-            $active={activeIndex === index}
+            $active={visibleIndex === index}
             aria-label={`Go to hero slide ${index + 1}`}
             onClick={() => setActiveIndex(index)}
           />
