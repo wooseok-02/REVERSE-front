@@ -18,7 +18,7 @@ export const Hero = styled.section<{ $image: string }>`
 export const HeroOverlay = styled.div`
   position: absolute;
   inset: 0;
-  background: rgba(45, 48, 58, 0.8);
+  background: rgba(45, 48, 58, 0.9);
 `;
 
 export const HeroContent = styled.div`
@@ -36,19 +36,19 @@ export const HeroContent = styled.div`
 `;
 
 export const HeroTitle = styled.h1`
-  margin: 0 0 30px;
+  margin: 20px 0 45px;
   color: #e6e7ff;
-  font-size: 64px;
-  font-weight: 800;
+  font-size: 40px;
+  font-weight: 600;
   line-height: 1.05;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
   font-family: "Roboto", sans-serif;
 `;
 
 export const HeroDesc = styled.p`
   margin: 0;
   color: rgba(230, 231, 255, 0.92);
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.65;
   white-space: pre-line;
 `;
@@ -98,7 +98,8 @@ export const MonthText = styled.h2`
 
 export const CalendarBox = styled.div`
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid #8088a7;
+  border-bottom: none;
   background: rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(4px);
 `;
