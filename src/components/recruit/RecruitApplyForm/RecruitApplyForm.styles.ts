@@ -81,6 +81,7 @@ export const RadioLabel = styled.label`
   input {
     width: 12px;
     height: 12px;
+    border-radius: 50%;
     accent-color: #ffffff;
   }
 `;
@@ -244,6 +245,14 @@ export const AgreeLabel = styled.label`
   }
 `;
 
+export const ErrorMessage = styled.p`
+  margin: 8px 0 0;
+  color: #ffb5b5;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+`;
+
 export const SubmitButton = styled.button`
   display: block;
   width: min(190px, 100%);
@@ -265,4 +274,83 @@ export const SubmitButton = styled.button`
     transform: translateY(-1px);
     filter: brightness(1.08);
   }
+`;
+
+export const ModalOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(9, 12, 18, 0.68);
+`;
+
+export const ModalCard = styled.div`
+  width: min(100%, 560px);
+  padding: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: #252a36;
+  color: #ffffff;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+`;
+
+export const ModalTitle = styled.h2`
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.4;
+  white-space: nowrap;
+
+  @media (max-width: 640px) {
+    font-size: 19px;
+    white-space: normal;
+  }
+`;
+
+export const ModalText = styled.p`
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, 0.74);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+  white-space: nowrap;
+
+  @media (max-width: 640px) {
+    white-space: normal;
+  }
+`;
+
+export const ModalActions = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+`;
+
+export const ModalSecondaryButton = styled.button`
+  min-width: 84px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 8px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+`;
+
+export const ModalPrimaryButton = styled.button`
+  min-width: 84px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 8px;
+  background: #50617f;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
 `;

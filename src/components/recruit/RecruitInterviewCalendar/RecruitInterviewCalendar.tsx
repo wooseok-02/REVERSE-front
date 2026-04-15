@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, type ChangeEvent } from "react";
 import * as S from "./RecruitInterviewCalendar.styles";
 
 type InterviewRange = {
@@ -15,6 +15,12 @@ type CalendarDay = {
 };
 
 type DayVariant = "plain" | "dark" | "light";
+
+type RecruitInterviewCalendarProps = {
+  selectedDate: string;
+  onSelectDate: (date: string) => void;
+  error?: string;
+};
 
 const monthLabels = [
   "Jan",
@@ -97,12 +103,13 @@ const getDefaultVariant = (
   return "dark";
 };
 
-export default function RecruitInterviewCalendar() {
+export default function RecruitInterviewCalendar({
+  selectedDate,
+  onSelectDate,
+  error,
+}: RecruitInterviewCalendarProps) {
   const [currentYear, setCurrentYear] = useState(2026);
   const [currentMonth, setCurrentMonth] = useState(8);
-  const [reversedDateKeys, setReversedDateKeys] = useState<Set<string>>(
-    () => new Set()
-  );
 
   const calendarDays = useMemo<CalendarDay[]>(() => {
     const firstDate = new Date(currentYear, currentMonth, 1);
@@ -128,26 +135,12 @@ export default function RecruitInterviewCalendar() {
     setCurrentMonth(nextDate.getMonth());
   };
 
-  const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleMonthChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setCurrentMonth(Number(event.target.value));
   };
 
-  const handleYearChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleYearChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setCurrentYear(Number(event.target.value));
-  };
-
-  const handleInterviewDateClick = (dateKey: string) => {
-    setReversedDateKeys((prev) => {
-      const next = new Set(prev);
-
-      if (next.has(dateKey)) {
-        next.delete(dateKey);
-      } else {
-        next.add(dateKey);
-      }
-
-      return next;
-    });
   };
 
   return (
@@ -207,13 +200,10 @@ export default function RecruitInterviewCalendar() {
         <S.DayGrid>
           {calendarDays.map((item) => {
             const defaultVariant = getDefaultVariant(item.interviewPosition);
-            const isReversed = reversedDateKeys.has(item.key);
             const variant =
-              isReversed && defaultVariant === "dark"
+              selectedDate === item.key && defaultVariant === "dark"
                 ? "light"
-                : isReversed && defaultVariant === "light"
-                  ? "dark"
-                  : defaultVariant;
+                : defaultVariant;
             const isInterviewDate = Boolean(item.interviewPosition);
 
             return (
@@ -223,7 +213,7 @@ export default function RecruitInterviewCalendar() {
                 $variant={variant}
                 $currentMonth={item.isCurrentMonth}
                 disabled={!isInterviewDate}
-                onClick={() => handleInterviewDateClick(item.key)}
+                onClick={() => onSelectDate(item.key)}
               >
                 {item.day}
               </S.DayButton>
@@ -231,6 +221,7 @@ export default function RecruitInterviewCalendar() {
           })}
         </S.DayGrid>
       </S.CalendarBox>
+      {error ? <S.ErrorMessage>{error}</S.ErrorMessage> : null}
     </S.CalendarField>
   );
 }

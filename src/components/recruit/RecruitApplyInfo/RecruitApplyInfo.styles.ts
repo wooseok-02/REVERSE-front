@@ -65,3 +65,11 @@ export const ContactIcon = styled.svg`
   flex: 0 0 20px;
   color: rgba(255, 255, 255, 0.9);
 `;
+
+export const EligibilityNotice = styled.p`
+  margin: 22px 0 0 34px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.6;
+`;

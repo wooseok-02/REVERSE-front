@@ -130,3 +130,11 @@ export const DayButton = styled.button<{
     pointer-events: none;
   }
 `;
+
+export const ErrorMessage = styled.p`
+  margin: 8px 0 0;
+  color: #ffb5b5;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+`;
