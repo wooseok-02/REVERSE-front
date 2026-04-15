@@ -233,10 +233,28 @@ export const SubItemList = styled.ul`
 `;
 
 export const SubItem = styled.li`
+`;
+
+export const SubItemButton = styled.button`
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
   color: rgba(255, 255, 255, 0.82);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.9;
+  text-align: left;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+  }
+
+  &:not(:disabled):hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
 
   @media (max-width: 1280px) {
     font-size: 13px;

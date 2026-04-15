@@ -6,11 +6,21 @@ import { headerMenus } from "../components/common/header/headerData";
 export default function MainLayout() {
   const navigate = useNavigate();
 
+  const handleLogoClick = () => {
+    navigate("/");
+    window.setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 0);
+  };
+
   return (
     <>
       <Header
         menus={headerMenus}
-        onLogoClick={() => navigate("/")}
+        onLogoClick={handleLogoClick}
         onLoginClick={() => navigate("/login")}
       />
       <Outlet />

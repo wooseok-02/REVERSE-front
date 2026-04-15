@@ -1,6 +1,11 @@
+export interface MegaMenuItem {
+  label: string;
+  path?: string;
+}
+
 export interface MegaMenuSection {
   title: string;
-  items: string[];
+  items: MegaMenuItem[];
 }
 
 export interface HeaderMenuItem {

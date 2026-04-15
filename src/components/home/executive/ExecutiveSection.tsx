@@ -46,7 +46,7 @@ export default function ExecutiveSection() {
   }, [officers]);
 
   return (
-    <S.Section>
+    <S.Section id="officer-intro">
       <S.Inner>
         <S.Header>
           <S.Title>임원진</S.Title>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import * as S from "./Header.styles";
 import Logo from "../Logo";
 import LogoImage from "../../../assets/logos/Header_logo.png";
@@ -12,8 +13,30 @@ export default function Header({
   onLogoClick,
   onLoginClick,
 }: HeaderProps) {
+  const navigate = useNavigate();
   const [hoveredMenuKey, setHoveredMenuKey] = useState<string | null>(null);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+
+  const handleNavigate = (path?: string) => {
+    if (!path) {
+      return;
+    }
+
+    navigate(path);
+    setIsMegaMenuOpen(false);
+    setHoveredMenuKey(null);
+
+    const [, hash] = path.split("#");
+
+    if (hash) {
+      window.setTimeout(() => {
+        document.getElementById(hash)?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 0);
+    }
+  };
 
   return (
     <S.Wrapper>
@@ -39,6 +62,7 @@ export default function Header({
                   <S.MenuButton
                     type="button"
                     $active={hoveredMenuKey === menu.key}
+                    onClick={() => handleNavigate(menu.path)}
                   >
                     {menu.label}
                   </S.MenuButton>
@@ -67,7 +91,15 @@ export default function Header({
                           {section.items.length > 0 && (
                             <S.SubItemList>
                               {section.items.map((item) => (
-                                <S.SubItem key={item}>{item}</S.SubItem>
+                                <S.SubItem key={item.label}>
+                                  <S.SubItemButton
+                                    type="button"
+                                    disabled={!item.path}
+                                    onClick={() => handleNavigate(item.path)}
+                                  >
+                                    {item.label}
+                                  </S.SubItemButton>
+                                </S.SubItem>
                               ))}
                             </S.SubItemList>
                           )}

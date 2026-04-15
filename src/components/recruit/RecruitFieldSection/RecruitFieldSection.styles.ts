@@ -46,32 +46,34 @@ export const Content = styled.div`
 
 export const FieldTabs = styled.div<{ $visible?: boolean }>`
   position: absolute;
-  left: 50%;
-  top: -52px;
+  right: calc(100% - 2px);
+  top: 18px;
   z-index: 3;
-  width: min(760px, 100%);
+  width: 138px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 10px;
   opacity: ${({ $visible }) => ($visible ? 1 : 0)};
   pointer-events: ${({ $visible }) => ($visible ? "auto" : "none")};
-  transform: translateX(-50%);
   transition: opacity 0.18s ease;
 
   @media (max-width: 1180px) {
-    position: static;
+    right: auto;
+    left: 50%;
+    top: -48px;
+    width: min(760px, 100vw - 48px);
+    flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 34px;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
+    justify-content: center;
+    transform: translateX(-50%);
   }
 `;
 
 export const FieldTab = styled.button<{ $visible?: boolean }>`
   height: 34px;
-  min-width: 128px;
+  width: 100%;
   border: none;
   border-radius: 0;
   background: #eef2fb;
@@ -90,8 +92,8 @@ export const FieldTab = styled.button<{ $visible?: boolean }>`
   }
 
   @media (max-width: 1180px) {
-    opacity: 1;
-    transform: none;
+    width: auto;
+    min-width: 128px;
   }
 `;
 
@@ -116,10 +118,16 @@ export const CardGrid = styled.div`
 export const RecruitCard = styled.article`
   width: min(100%, 320px);
   min-width: 0;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+`;
+
+export const ImageStage = styled.div`
+  position: relative;
+  width: 100%;
 `;
 
 export const CardImage = styled.img`

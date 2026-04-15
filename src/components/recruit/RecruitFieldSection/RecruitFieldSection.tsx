@@ -13,19 +13,6 @@ export default function RecruitFieldSection() {
       </S.Header>
 
       <S.Content>
-        <S.FieldTabs aria-label="모집 분야 목록" $visible={isFieldTabsOpen}>
-          {recruitFields.map((field, index) => (
-            <S.FieldTab
-              key={field}
-              type="button"
-              $visible={isFieldTabsOpen}
-              style={{ transitionDelay: `${index * 0.07}s` }}
-            >
-              {field}
-            </S.FieldTab>
-          ))}
-        </S.FieldTabs>
-
         <S.CardGrid>
           {recruitCards.map((card, index) => (
             <S.RecruitCard
@@ -41,7 +28,26 @@ export default function RecruitFieldSection() {
                 }
               }}
             >
-              <S.CardImage src={card.image} alt={card.title} />
+              <S.ImageStage>
+                {index === 0 ? (
+                  <S.FieldTabs
+                    aria-label='모집 분야 목록'
+                    $visible={isFieldTabsOpen}
+                  >
+                    {recruitFields.map((field, fieldIndex) => (
+                      <S.FieldTab
+                        key={field}
+                        type='button'
+                        $visible={isFieldTabsOpen}
+                        style={{ transitionDelay: `${fieldIndex * 0.07}s` }}
+                      >
+                        {field}
+                      </S.FieldTab>
+                    ))}
+                  </S.FieldTabs>
+                ) : null}
+                <S.CardImage src={card.image} alt={card.title} />
+              </S.ImageStage>
               <S.CardTitle>{card.title}</S.CardTitle>
               <S.CardSubtitle>{card.subtitle}</S.CardSubtitle>
               <S.CardDescription>{card.description}</S.CardDescription>

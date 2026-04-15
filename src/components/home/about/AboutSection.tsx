@@ -6,7 +6,7 @@ export default function AboutSection() {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <S.Section>
+    <S.Section id="club-intro">
       <S.BackgroundMark src={introLogo} alt="" aria-hidden="true" />
 
       <S.Content ref={ref}>

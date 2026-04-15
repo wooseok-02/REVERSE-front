@@ -22,7 +22,7 @@ export default function ProjectSection() {
   }, []);
 
   return (
-    <S.Section>
+    <S.Section id="project-intro">
       <S.Inner>
         <S.Header>
           <S.Title>PROJECT</S.Title>
