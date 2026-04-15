@@ -30,8 +30,11 @@ export const BackgroundOverlay = styled.div`
   position: absolute;
   inset: 0;
   z-index: -1;
-  background:
-    linear-gradient(90deg, rgba(29, 32, 42, 0.5), rgba(29, 32, 42, 0.18)),
+  background: linear-gradient(
+      90deg,
+      rgba(29, 32, 42, 0.5),
+      rgba(29, 32, 42, 0.18)
+    ),
     rgba(17, 20, 28, 0.08);
 `;
 
@@ -62,7 +65,7 @@ export const Content = styled.div`
 export const DeviceImage = styled.img.attrs({ src: iMacImage })`
   position: absolute;
   left: max(40px, calc((100vw - 1280px) / 2 + 60px));
-  bottom: -52px;
+  bottom: -60px;
   z-index: 0;
   width: 460px;
   height: auto;
