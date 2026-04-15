@@ -19,7 +19,7 @@ export default function Header({
     <S.Wrapper>
       <S.Container>
         <S.Logo onClick={onLogoClick}>
-          {logo && <Logo src={LogoImage} size={56} alt='logo' />}
+          {logo && <Logo src={LogoImage} size={240} alt="logo" />}
         </S.Logo>
 
         <S.RightArea>
@@ -37,7 +37,7 @@ export default function Header({
                   onMouseEnter={() => setHoveredMenuKey(menu.key)}
                 >
                   <S.MenuButton
-                    type='button'
+                    type="button"
                     $active={hoveredMenuKey === menu.key}
                   >
                     {menu.label}
@@ -56,7 +56,11 @@ export default function Header({
                       {menu.sections?.map((section) => (
                         <S.Section key={`${menu.key}-${section.title}`}>
                           <S.SectionHeading>
-                            <S.SectionIcon src={BannerLogo} alt='' aria-hidden='true' />
+                            <S.SectionIcon
+                              src={BannerLogo}
+                              alt=""
+                              aria-hidden="true"
+                            />
                             <S.SectionTitle>{section.title}</S.SectionTitle>
                           </S.SectionHeading>
 
@@ -76,7 +80,7 @@ export default function Header({
             )}
           </S.NavArea>
 
-          <S.LoginButton type='button' onClick={onLoginClick}>
+          <S.LoginButton type="button" onClick={onLoginClick}>
             {loginText}
           </S.LoginButton>
         </S.RightArea>
