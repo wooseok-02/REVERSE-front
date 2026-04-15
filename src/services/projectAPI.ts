@@ -23,7 +23,6 @@ export interface ClubProjectPayload {
 // 프로젝트 목록 조회 (GET)
 export const getProjectList = async (): Promise<ClubProject[]> => {
   const response = await axiosInstance.get("/api/club-project");
-  console.log("VITE_API_URL:", import.meta.env.VITE_API_URL);
   return response.data;
 };
 
@@ -33,7 +32,10 @@ export const uploadProjectImage = async (file: File): Promise<string> => {
   formData.append("file", file);
   formData.append("folder", "project");
 
-  const response = await axiosInstance.post("/api/club-project/image", formData);
+  const response = await axiosInstance.post(
+    "/api/club-project/image",
+    formData
+  );
   return response.data;
 };
 

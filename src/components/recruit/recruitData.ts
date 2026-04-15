@@ -1,5 +1,6 @@
 import aboutImg from "../../assets/images/about-bg.jpg";
 import calendarImg from "../../assets/images/calendar-bg.jpg";
+
 import heroImg from "../../assets/images/hero-bg.jpg";
 import mainProjectImg from "../../assets/images/project-main.jpg";
 import studyImg from "../../assets/images/project-study.jpg";

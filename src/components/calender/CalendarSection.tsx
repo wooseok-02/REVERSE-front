@@ -1,5 +1,5 @@
 import * as S from "./CalendarSection.styles";
-import heroImage from "../../assets/images/calendar-bg.png";
+import heroImage from "../../assets/images/calendar-bg.jpg";
 
 type CalendarDay = {
   day: number | null;
