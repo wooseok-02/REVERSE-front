@@ -1,12 +1,14 @@
 import { useEffect, useMemo, useState } from "react";
-import * as S from "./RuleSection.styles";
 import ruleBgImg from "../../../assets/images/rule-bg.png";
 import { getTermsList, type TermsResponse } from "../../../services/termsApi";
+import * as S from "./RuleSection.styles";
 
 const INITIAL_VISIBLE_COUNT = 4;
 
-const toSingleLine = (contents: string) =>
-  contents.replace(/\s+/g, " ").trim();
+const toSingleLine = (contents: string) => contents.replace(/\s+/g, " ").trim();
+
+const isVisibleSummaryRule = (term: TermsResponse) =>
+  !term.title.includes("개인정보 처리방침");
 
 export default function RuleSection() {
   const [terms, setTerms] = useState<TermsResponse[]>([]);
@@ -34,13 +36,15 @@ export default function RuleSection() {
     [terms]
   );
 
-  const visibleTerms = sortedTerms.slice(0, INITIAL_VISIBLE_COUNT);
+  const visibleTerms = sortedTerms
+    .filter(isVisibleSummaryRule)
+    .slice(0, INITIAL_VISIBLE_COUNT);
 
   return (
     <>
       <S.Section>
         <S.BgWrap>
-          <S.BgImage src={ruleBgImg} alt="REVERSE rule background" />
+          <S.BgImage src={ruleBgImg} alt='REVERSE rule background' />
         </S.BgWrap>
 
         <S.Inner>
@@ -57,13 +61,11 @@ export default function RuleSection() {
                 </S.RuleItem>
               ))}
             </S.RuleList>
-          ) : (
-            <S.StateMessage>등록된 규정 정보가 없습니다.</S.StateMessage>
-          )}
+          ) : null}
 
           {sortedTerms.length > 0 ? (
             <S.ButtonWrap>
-              <S.Button type="button" onClick={() => setIsModalOpen(true)}>
+              <S.Button type='button' onClick={() => setIsModalOpen(true)}>
                 Learn More.
               </S.Button>
             </S.ButtonWrap>
@@ -73,9 +75,9 @@ export default function RuleSection() {
 
       {isModalOpen ? (
         <S.ModalOverlay
-          role="button"
+          role='button'
           tabIndex={0}
-          aria-label="Close regulations modal"
+          aria-label='Close regulations modal'
           onClick={() => setIsModalOpen(false)}
           onKeyDown={(event) => {
             if (event.key === "Enter" || event.key === " ") {
@@ -87,7 +89,7 @@ export default function RuleSection() {
             <S.ModalHeader>
               <S.ModalTitle>Regulations</S.ModalTitle>
               <S.ModalCloseButton
-                type="button"
+                type='button'
                 onClick={() => setIsModalOpen(false)}
               >
                 Close
