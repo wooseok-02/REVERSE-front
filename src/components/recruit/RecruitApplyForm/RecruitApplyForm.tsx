@@ -6,6 +6,7 @@ import useRecruitApplyForm, {
   CUSTOM_EMAIL_DOMAIN,
   EMAIL_DOMAINS,
   GRADES,
+  INTERVIEW_TIMES,
   SUPPORT_FIELDS,
 } from "./useRecruitApplyForm";
 
@@ -24,14 +25,21 @@ export default function RecruitApplyForm() {
     values,
   } = useRecruitApplyForm();
   const [isDomainMenuOpen, setIsDomainMenuOpen] = useState(false);
+  const [isInterviewTimeMenuOpen, setIsInterviewTimeMenuOpen] = useState(false);
   const [isSubmitConfirmOpen, setIsSubmitConfirmOpen] = useState(false);
 
   const isCustomEmailDomain = values.emailDomain === CUSTOM_EMAIL_DOMAIN;
   const domainDisplayText = values.emailDomain || "선택";
+  const interviewTimeDisplayText = values.interviewTime || "선택";
 
   const handleDomainSelect = (domain: string) => {
     selectEmailDomain(domain);
     setIsDomainMenuOpen(false);
+  };
+
+  const handleInterviewTimeSelect = (time: string) => {
+    setField("interviewTime", time);
+    setIsInterviewTimeMenuOpen(false);
   };
 
   const handleSubmitClick = async () => {
@@ -224,11 +232,52 @@ export default function RecruitApplyForm() {
           </S.Field>
         </S.EmailGroup>
 
-        <RecruitInterviewCalendar
-          selectedDate={values.interviewDate}
-          onSelectDate={(date) => setField("interviewDate", date)}
-          error={getErrorMessage(errors.interviewDate?.message) ?? undefined}
-        />
+        <S.InterviewScheduleRow>
+          <RecruitInterviewCalendar
+            selectedDate={values.interviewDate}
+            onSelectDate={(date) => setField("interviewDate", date)}
+            error={getErrorMessage(errors.interviewDate?.message) ?? undefined}
+          />
+
+          <S.InterviewTimeField>
+            <S.InterviewTimeLabel>면접 시간</S.InterviewTimeLabel>
+            <S.InterviewTimeControl>
+              <S.InterviewTimeSelectButton
+                type='button'
+                aria-label='면접 시간 선택'
+                onClick={() => setIsInterviewTimeMenuOpen((prev) => !prev)}
+              >
+                {interviewTimeDisplayText}
+              </S.InterviewTimeSelectButton>
+              <S.InterviewTimeArrowButton
+                type='button'
+                aria-label='면접 시간 목록 열기'
+                onClick={() => setIsInterviewTimeMenuOpen((prev) => !prev)}
+              >
+                <S.InterviewTimeArrow aria-hidden='true' />
+              </S.InterviewTimeArrowButton>
+
+              {isInterviewTimeMenuOpen ? (
+                <S.InterviewTimeMenu>
+                  {INTERVIEW_TIMES.map((time) => (
+                    <S.InterviewTimeOption
+                      key={time}
+                      type='button'
+                      onClick={() => handleInterviewTimeSelect(time)}
+                    >
+                      {time}
+                    </S.InterviewTimeOption>
+                  ))}
+                </S.InterviewTimeMenu>
+              ) : null}
+            </S.InterviewTimeControl>
+            {errors.interviewTime ? (
+              <S.ErrorMessage>
+                {getErrorMessage(errors.interviewTime.message)}
+              </S.ErrorMessage>
+            ) : null}
+          </S.InterviewTimeField>
+        </S.InterviewScheduleRow>
 
         <S.AgreeLabel>
           <input

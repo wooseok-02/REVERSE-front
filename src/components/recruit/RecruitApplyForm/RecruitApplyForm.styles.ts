@@ -227,6 +227,114 @@ export const DateInput = styled(Input)`
   }
 `;
 
+export const InterviewScheduleRow = styled.div`
+  display: grid;
+  grid-template-columns: 260px minmax(220px, 1fr);
+  align-items: start;
+  gap: 24px;
+  margin-top: 24px;
+
+  > div {
+    margin-top: 0;
+  }
+
+  @media (max-width: 760px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+`;
+
+export const InterviewTimeField = styled.div`
+  min-width: 0;
+`;
+
+export const InterviewTimeLabel = styled.p`
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+`;
+
+export const InterviewTimeControl = styled.div`
+  position: relative;
+  width: 100%;
+  height: 34px;
+  border: 1px solid rgba(230, 235, 245, 0.66);
+  background: rgba(48, 53, 66, 0.72);
+
+  &:focus-within {
+    border-color: #ffffff;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.14);
+  }
+`;
+
+export const InterviewTimeSelectButton = styled.button`
+  width: 100%;
+  height: 100%;
+  padding: 0 38px 0 10px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 13px;
+  text-align: left;
+  cursor: pointer;
+`;
+
+export const InterviewTimeArrowButton = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 100%;
+  padding: 0;
+  border: none;
+  border-left: 1px solid rgba(230, 235, 245, 0.22);
+  background: transparent;
+  cursor: pointer;
+`;
+
+export const InterviewTimeArrow = styled.span`
+  display: block;
+  width: 0;
+  height: 0;
+  margin: 0 auto;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid rgba(255, 255, 255, 0.86);
+`;
+
+export const InterviewTimeMenu = styled.div`
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -1px;
+  right: -1px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(230, 235, 245, 0.5);
+  background: rgba(45, 50, 64, 0.98);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.18);
+`;
+
+export const InterviewTimeOption = styled.button`
+  width: 100%;
+  height: 30px;
+  padding: 0 10px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+  }
+`;
+
 export const AgreeLabel = styled.label`
   display: inline-flex;
   align-items: center;

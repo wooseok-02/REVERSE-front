@@ -16,6 +16,7 @@ export const EMAIL_DOMAINS = [
   "직접 입력",
 ];
 export const CUSTOM_EMAIL_DOMAIN = "직접 입력";
+export const INTERVIEW_TIMES = ["오후 5시", "오후 6시", "오후 7시", "오후 8시"];
 
 export type RecruitApplyFormValues = {
   name: string;
@@ -28,6 +29,7 @@ export type RecruitApplyFormValues = {
   emailDomain: string;
   customEmailDomain: string;
   interviewDate: string;
+  interviewTime: string;
   isPrivacyAgreed: boolean;
 };
 
@@ -42,6 +44,7 @@ const defaultValues: RecruitApplyFormValues = {
   emailDomain: "",
   customEmailDomain: "",
   interviewDate: "",
+  interviewTime: "",
   isPrivacyAgreed: false,
 };
 
@@ -79,6 +82,7 @@ export default function useRecruitApplyForm() {
       },
     });
     register("interviewDate", { required: "면접 일정을 선택해 주세요." });
+    register("interviewTime", { required: "면접 시간을 선택해 주세요." });
     register("isPrivacyAgreed", {
       validate: (value) =>
         value || "개인정보 수집 및 이용 동의가 필요합니다.",
