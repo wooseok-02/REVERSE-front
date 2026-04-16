@@ -284,25 +284,44 @@ export const ModalOverlay = styled.div`
   align-items: center;
   justify-content: center;
   padding: 24px;
-  background: rgba(9, 12, 18, 0.68);
+  background: rgba(9, 12, 18, 0.32);
 `;
 
 export const ModalCard = styled.div`
-  width: min(100%, 560px);
-  padding: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 8px;
-  background: #252a36;
-  color: #ffffff;
-  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.38);
+  position: relative;
+  width: min(100%, 582px);
+  min-height: 190px;
+  padding: 34px 30px 30px;
+  border: 1px solid #d9d9e1;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #242424;
+  box-shadow: 0 16px 48px rgba(15, 18, 28, 0.18);
+`;
+
+export const ModalCloseButton = styled.button`
+  position: absolute;
+  top: 18px;
+  right: 17px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #222222;
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+  cursor: pointer;
 `;
 
 export const ModalTitle = styled.h2`
   margin: 0;
-  color: #ffffff;
-  font-size: 22px;
+  padding-right: 36px;
+  color: #222222;
+  font-size: 24px;
   font-weight: 800;
-  line-height: 1.4;
+  line-height: 1.28;
   white-space: nowrap;
 
   @media (max-width: 640px) {
@@ -313,10 +332,10 @@ export const ModalTitle = styled.h2`
 
 export const ModalText = styled.p`
   margin: 16px 0 0;
-  color: rgba(255, 255, 255, 0.74);
+  color: #222222;
   font-size: 15px;
-  font-weight: 600;
-  line-height: 1.6;
+  font-weight: 500;
+  line-height: 1.5;
   white-space: nowrap;
 
   @media (max-width: 640px) {
@@ -327,30 +346,33 @@ export const ModalText = styled.p`
 export const ModalActions = styled.div`
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  margin-top: 24px;
+  gap: 14px;
+  margin-top: 20px;
 `;
 
 export const ModalSecondaryButton = styled.button`
-  min-width: 84px;
-  height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.24);
-  border-radius: 8px;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.86);
-  font-size: 13px;
-  font-weight: 800;
+  min-width: 54px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid #d7d5df;
+  border-radius: 6px;
+  background: #e4e2ea;
+  box-shadow: inset 0 10px 10px -8px rgba(118, 116, 132, 0.55);
+  color: #5d5b64;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
 `;
 
 export const ModalPrimaryButton = styled.button`
-  min-width: 84px;
-  height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 8px;
-  background: #50617f;
+  min-width: 54px;
+  height: 38px;
+  padding: 0 14px;
+  border: 1px solid #242424;
+  border-radius: 6px;
+  background: #242424;
   color: #ffffff;
-  font-size: 13px;
-  font-weight: 800;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
 `;

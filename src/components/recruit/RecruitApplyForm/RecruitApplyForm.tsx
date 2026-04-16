@@ -258,11 +258,18 @@ export default function RecruitApplyForm() {
             aria-modal='true'
             aria-labelledby='submit-confirm-title'
           >
+            <S.ModalCloseButton
+              type='button'
+              aria-label='닫기'
+              onClick={() => setIsSubmitConfirmOpen(false)}
+            >
+              ×
+            </S.ModalCloseButton>
             <S.ModalTitle id='submit-confirm-title'>
-              제출 후 신청 내용은 수정할 수 없습니다.
+              제출 후 해당 내용은 수정할 수 없습니다.
             </S.ModalTitle>
             <S.ModalText>
-              입력한 내용을 확인했습니다. 이대로 지원서를 제출하시겠습니까?
+              위의 내용을 확인했습니다. 이대로 제출하시겠습니까?
             </S.ModalText>
             <S.ModalActions>
               <S.ModalSecondaryButton
