@@ -67,6 +67,11 @@ export default function LoginForm({ onSubmit, onClickSignUp }: LoginFormProps) {
             [회원가입 하기]
           </C.TextButton>
         </S.BottomText>
+
+        <S.UtilityRow>
+          <S.UtilityButton type='button'>아이디 찾기</S.UtilityButton>
+          <S.UtilityButton type='button'>비밀번호 찾기</S.UtilityButton>
+        </S.UtilityRow>
       </C.Form>
     </AuthShell>
   );
